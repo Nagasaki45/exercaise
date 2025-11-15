@@ -1,38 +1,15 @@
-# sv
+# 💪 Workout App
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+This is a SvelteKit application designed to help you manage and execute your workouts. Define your workout routines using a structured YAML format, and the app will guide you through each step with timers and progress tracking. It even includes a handy prompt to help you convert your free-text workout plans into the required YAML structure using an AI!
 
-## Creating a project
+## 🚀 Getting Started (Local Development)
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```sh
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
+```bash
+npm install
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
+The application will be accessible at `http://localhost:5173` (or another port if 5173 is in use).
 
-## Building
+## 📦 Deployment
 
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+This project is configured for continuous deployment to GitHub Pages using GitHub Actions.
