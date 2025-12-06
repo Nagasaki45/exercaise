@@ -62,6 +62,7 @@
 
   // Reactive:
   $: currentStep = unrolledSteps[currentStepIndex];
+  $: nextStep = unrolledSteps[currentStepIndex + 1];
   $: isWorkoutDone = currentStep === undefined && unrolledSteps.length > 0;
   $: displayTimerValue = timerValue > 0 ? timerValue : (currentStep?.type === 'time' ? currentStep.amount : 0);
 
@@ -188,7 +189,7 @@
 <style>
   .container {
     max-width: 600px;
-    margin: 2rem auto;
+    margin: 2rem auto 4rem auto; /* Added bottom margin to account for fixed banner */
     padding: 1rem;
     font-family: sans-serif;
     text-align: center;
@@ -248,6 +249,22 @@
     color: #28a745;
     margin-top: 3rem;
   }
+
+  .next-up-banner {
+    position: fixed;
+    bottom: 1rem; /* Margin underneath it */
+    left: 50%; /* Center the element horizontally */
+    transform: translateX(-50%); /* Center the element horizontally */
+    max-width: 600px; /* Max width inline with content */
+    width: calc(100% - 2rem); /* Take full width minus some side padding/margin on smaller screens, or max-width on larger */
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 0.75rem 1rem; /* Added horizontal padding for a more distinct UI element */
+    border-top: none; /* Remove top border, as it's now floating */
+    border-radius: 8px; /* Give it rounded corners like other UI elements */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15); /* More prominent shadow for a "floating" look */
+    z-index: 1000;
+  }
 </style>
 
 <div class="container">
@@ -288,3 +305,9 @@
     </button>
   {/if}
 </div>
+
+{#if nextStep}
+  <div class="next-up-banner">
+    Next up: <strong>{nextStep.name}</strong>
+  </div>
+{/if}
