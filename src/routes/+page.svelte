@@ -31,9 +31,6 @@
     }
   }
 
-  function deleteWorkout(workoutName: string) {
-    workouts.update(currentWorkouts => currentWorkouts.filter(w => w.name !== workoutName));
-  }
 </script>
 
 <style>
@@ -100,16 +97,6 @@
     text-decoration: underline;
   }
 
-  .delete-button {
-    background-color: #dc3545;
-    margin-left: 1rem;
-    padding: 0.5rem 0.8rem;
-    font-size: 0.8rem;
-  }
-
-  .delete-button:hover {
-    background-color: #c82333;
-  }
 
   .ai-prompt-section {
     background-color: #e9f5ff;
@@ -147,7 +134,6 @@
       {#each $workouts as workout (workout.name)}
         <li>
           <a href="/workout/{encodeURIComponent(workout.name)}">{workout.name}</a>
-          <button class="delete-button" on:click={() => deleteWorkout(workout.name)}>Delete</button>
         </li>
       {/each}
     </ul>
