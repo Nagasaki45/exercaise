@@ -1,4 +1,4 @@
-import{f,a as h}from"../chunks/DCvXmXlu.js";import{i as d}from"../chunks/6IICz2GY.js";import{f as b,g as r,t as v,i as y,j as n,k as a,l as w,n as x,o as i}from"../chunks/CR1LdmZO.js";import{e as k,s as A}from"../chunks/CJtA_M2M.js";var T=f('<div class="container svelte-baauen"><h1 class="svelte-baauen">AI Prompt for Workout Plan Conversion</h1> <p class="svelte-baauen">Use the following prompt to ask an AI to convert your free-text workout plan into the YAML format our app requires. Simply copy the prompt, paste it into your conversation with the AI, and replace the placeholder text with your own plan.</p> <pre class="svelte-baauen"></pre> <button class="svelte-baauen"> </button></div>');function L(p,u){b(u,!1);let l=`Please convert this workout plan into the specific YAML format required by my workout app.
+import{f,a as h}from"../chunks/DJS9wBG_.js";import{i as d}from"../chunks/CWFtMCaS.js";import{S as b,U as r,Y as v,T as y,V as n,X as a,d as w,q as x,R as i}from"../chunks/D3NXlZUO.js";import{e as k,s as A}from"../chunks/tj3d_5tf.js";var T=f('<div class="container svelte-baauen"><h1 class="svelte-baauen">AI Prompt for Workout Plan Conversion</h1> <p class="svelte-baauen">Use the following prompt to ask an AI to convert your free-text workout plan into the YAML format our app requires. Simply copy the prompt, paste it into your conversation with the AI, and replace the placeholder text with your own plan.</p> <pre class="svelte-baauen"></pre> <button class="svelte-baauen"> </button></div>');function g(p,u){b(u,!1);let l=`Please convert this workout plan into the specific YAML format required by my workout app.
 
 The YAML format should follow this structure:
 
@@ -32,4 +32,4 @@ workouts:
             rest: <Rest time in seconds between sets>
             notes: <Optional notes for the exercise>
 
-Please ensure the output is only the YAML code block, as I will be pasting it directly into the app.`;var o=r(s,2),m=n(o,!0);a(o),a(t),v(()=>A(m,w(e))),k("click",o,c),h(p,t),y()}export{L as component};
+Please ensure the output is only the YAML code block, as I will be pasting it directly into the app.`;var o=r(s,2),m=n(o,!0);a(o),a(t),v(()=>A(m,w(e))),k("click",o,c),h(p,t),y()}export{g as component};
