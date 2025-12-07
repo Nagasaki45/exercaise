@@ -1,36 +1,7 @@
 <script lang="ts">
   import { workouts } from '$lib/stores';
   import { goto } from '$app/navigation';
-  import jsyaml from 'js-yaml';
   import type { WorkoutDefinition } from '$lib/types';
-
-  let yamlInput = '';
-
-  function addWorkout() {
-    try {
-      const data = jsyaml.load(yamlInput) as { workouts: WorkoutDefinition[] };
-      if (!data || !data.workouts || !Array.isArray(data.workouts)) {
-        alert('Invalid YAML format: Expected an object with a "workouts" array.');
-        return;
-      }
-
-      workouts.update(currentWorkouts => {
-        const newWorkoutsMap = new Map(currentWorkouts.map(w => [w.name, w]));
-        
-        for (const newWorkout of data.workouts) {
-          if (newWorkout.name) {
-            newWorkoutsMap.set(newWorkout.name, newWorkout);
-          }
-        }
-        
-        return Array.from(newWorkoutsMap.values());
-      });
-
-      yamlInput = '';
-    } catch (e: any) {
-      alert(`Invalid YAML format: ${e.message}`);
-    }
-  }
 
   function createNewWorkout() {
     let newWorkoutName = 'New Workout';
@@ -78,6 +49,31 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
+  }
+
+  .split-button {
+    display: flex;
+  }
+  .split-button > button {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .split-button-action {
+    background-color: #007bff;
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+  }
+  .split-button-action:hover {
+    background-color: #0056b3;
   }
 
   .header-actions h2 {
@@ -166,7 +162,10 @@
 
   <div class="header-actions">
     <h2>My Workouts</h2>
-    <button on:click={createNewWorkout}>+ New Workout</button>
+    <div class="split-button">
+      <button on:click={createNewWorkout}>+ New Workout</button>
+      <a href="/edit-raw" class="split-button-action" title="Edit all workouts as raw YAML">Edit</a>
+    </div>
   </div>
   {#if $workouts.length === 0}
     <p>No workouts saved yet. Add one below!</p>
@@ -180,15 +179,4 @@
     </ul>
   {/if}
 
-  <div class="ai-prompt-section">
-    <h2>Need Help with Formatting?</h2>
-    <p>
-      If you have a workout plan in plain text, you can use our AI prompt to convert it into the required YAML format.
-    </p>
-    <a href="/prompt" class="button-link">Get AI Prompt</a>
-  </div>
-
-  <h2>Add New Workout</h2>
-  <textarea bind:value={yamlInput} placeholder="Paste your workout YAML here..."></textarea>
-  <button on:click={addWorkout}>Save Workout</button>
 </div>

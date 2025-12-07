@@ -89,7 +89,7 @@
     workout.rounds.push({
       id: idCounter++,
       count: 1,
-      exercises: []
+      exercises: [{}]
     });
     workout = workout; // Trigger reactivity
     saveWorkout();
@@ -108,11 +108,6 @@
     if (!workout || !workout.rounds) return;
     workout.rounds[roundIndex].exercises.push({
       id: idCounter++,
-      name: 'New Exercise',
-      type: 'reps',
-      amount: 10,
-      sets: 1,
-      rest: '30s'
     });
     workout = workout; // Trigger reactivity
     saveWorkout();
@@ -418,7 +413,6 @@
 
     <div class="actions">
       <a href="/workout/{encodeURIComponent(workout.name)}/run" class="button button-start">Start Workout</a>
-      <a href="/workout/{encodeURIComponent(originalName)}/edit" class="button button-edit">Edit YAML</a>
       <button on:click={deleteWorkout} class="button button-delete">Delete Workout</button>
     </div>
 
