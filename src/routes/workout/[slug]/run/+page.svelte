@@ -271,11 +271,23 @@
     width: calc(100% - 2rem); /* Take full width minus some side padding/margin on smaller screens, or max-width on larger */
     background-color: #f8f9fa;
     text-align: center;
-    padding: 0.75rem 1rem; /* Added horizontal padding for a more distinct UI element */
+    padding: 1rem;
     border-top: none; /* Remove top border, as it's now floating */
     border-radius: 8px; /* Give it rounded corners like other UI elements */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.15); /* More prominent shadow for a "floating" look */
+    font-family: sans-serif;
     z-index: 1000;
+  }
+
+  .next-up-banner span {
+    display: block;
+    font-size: 1.2rem;
+    color: #555;
+  }
+
+  .next-up-banner strong {
+    display: block;
+    font-size: 2rem;
+    color: #333;
   }
 </style>
 
@@ -320,6 +332,7 @@
 
 {#if nextStep}
   <div class="next-up-banner">
-    Next up: <strong>{nextStep.name}</strong>
+    <span>Next up</span>
+    <strong>{nextStep.name}</strong>
   </div>
 {/if}
