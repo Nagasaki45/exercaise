@@ -1,5 +1,6 @@
 <script lang="ts">
   import { workouts } from '$lib/stores';
+  import { goto } from '$app/navigation';
   import jsyaml from 'js-yaml';
   import type { WorkoutDefinition } from '$lib/types';
 
@@ -31,6 +32,32 @@
     }
   }
 
+  function createNewWorkout() {
+    let newWorkoutName = 'New Workout';
+    let counter = 1;
+    const existingNames = new Set($workouts.map(w => w.name));
+
+    while (existingNames.has(newWorkoutName)) {
+      counter++;
+      newWorkoutName = `New Workout ${counter}`;
+    }
+
+    const newWorkout: WorkoutDefinition = {
+      name: newWorkoutName,
+      rounds: [
+        {
+          count: 1,
+          exercises: [{}],
+        }
+      ]
+    };
+
+    workouts.update(currentWorkouts => {
+      return [...currentWorkouts, newWorkout];
+    });
+
+    goto(`/workout/${encodeURIComponent(newWorkoutName)}`);
+  }
 </script>
 
 <style>
@@ -44,6 +71,17 @@
   h1, h2 {
     color: #333;
     margin-bottom: 1rem;
+  }
+
+  .header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .header-actions h2 {
+    margin-bottom: 0;
   }
 
   textarea {
@@ -126,7 +164,10 @@
 <div class="container">
   <h1>Workout App</h1>
 
-  <h2>My Workouts</h2>
+  <div class="header-actions">
+    <h2>My Workouts</h2>
+    <button on:click={createNewWorkout}>+ New Workout</button>
+  </div>
   {#if $workouts.length === 0}
     <p>No workouts saved yet. Add one below!</p>
   {:else}
