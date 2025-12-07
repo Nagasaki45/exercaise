@@ -457,7 +457,7 @@
                   type="text"
                   bind:value={round.rest_after_round}
                   on:blur={saveWorkout}
-                  placeholder="e.g. 60s"
+                  placeholder="e.g. 60"
                 />
               </div>
               <button class="button-delete-small" on:click={() => deleteRound(roundIndex)} title="Delete Round"
@@ -526,7 +526,7 @@
                         type="text"
                         bind:value={exercise.rest}
                         on:blur={saveWorkout}
-                        placeholder="e.g. 45s"
+                        placeholder="e.g. 45"
                       />
                     </div>
                     <div class="exercise-form-notes">
